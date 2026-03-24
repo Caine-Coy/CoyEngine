@@ -2,9 +2,9 @@
 bin/
 obj/
 
-# NuGet packages
+# NuGet packages (keep local feed, ignore generated packages)
+# nuget-packages/  ← Commented out to keep local feed
 *.nupkg
-nuget-packages/
 
 # IDE
 .vscode/
