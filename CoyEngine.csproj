@@ -2,26 +2,37 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
     <!-- Package metadata for NuGet -->
     <PackageId>CoyEngine</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>Your Name</Authors>
     <Description>A reusable 2D isometric game engine built with MonoGame</Description>
     <RepositoryUrl>https://github.com/yourusername/CoyEngine</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    
+
     <!-- Enable package generation -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>../nuget-packages</PackageOutputPath>
+
+    <!-- Define SYSTEM_DRAWING on Windows -->
+    <DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">$(DefineConstants);SYSTEM_DRAWING</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     <PackageReference Include="MessagePack" Version="2.5.112" />
+    <PackageReference Include="MonoGame.Extended" Version="4.0.2" />
+  </ItemGroup>
+
+  <!-- System.Drawing.Common is Windows-only for font rendering -->
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

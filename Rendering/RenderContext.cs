@@ -1,6 +1,7 @@
 using CoyEngine.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.BitmapFonts;
 
 #nullable enable
 
@@ -15,6 +16,7 @@ namespace CoyEngine.Rendering
         public Texture2D WhitePixel { get; }
         public SpriteFont? DebugFont { get; }
         public TinyBitmapFont? TinyFont { get; }
+        public BitmapFont? BitmapFont { get; }
 
         // Mouse position in client (window) coordinates as updated by the game each frame
         public int MouseX { get; set; }
@@ -30,13 +32,14 @@ namespace CoyEngine.Rendering
 
         private bool _isBatchActive;
 
-        public RenderContext(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, Texture2D whitePixel, SpriteFont? debugFont, TinyBitmapFont? tinyFont)
+        public RenderContext(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, Texture2D whitePixel, SpriteFont? debugFont, TinyBitmapFont? tinyFont, BitmapFont? bitmapFont = null)
         {
             GraphicsDevice = graphicsDevice;
             SpriteBatch = spriteBatch;
             WhitePixel = whitePixel;
             DebugFont = debugFont;
             TinyFont = tinyFont;
+            BitmapFont = bitmapFont;
         }
 
         public void BeginWorld(Matrix transform)
